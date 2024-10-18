@@ -1,0 +1,195 @@
+{% extends 'business.html' %}
+{% load static %}
+{% block content %}
+        <section class="breadcrumbs-area" >
+            <div class="container">
+                <div class="breadcrumbs-content">
+                    <h1>{{aid.newscetegory}} News</h1>
+                    <ul>
+                        <li>
+                            <a href="{% url 'postpage' %}">News</a> -</li>
+                            <li>{{aid.newscetegory}} News</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- News Details Page Area Start Here -->
+            <section class="bg-body section-space-less30">
+                <div class="container">
+                    <ul class="post-info-dark mb-30">
+                        <li>
+                            <a href="#">
+                                <span>Published By</span> {{aid.othourname}}</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>{{aid.date}}</a>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="news-details-layout3 mb-30">
+                                <img src="{{ aid.newsimg.url }}" alt="news-details" class="img-fluid pull-left mr-40 mb-15">
+                                <h2 class="title-medium-dark size-xl">{{ aid.newsheador|safe }}</h2>
+                                {{ aid.newscontent|safe }}
+                                
+                                <div class="post-share-area mb-40 item-shadow-1">
+                                    <p>You can share this post!</p>
+                                    <ul class="social-default item-inline">
+                                        <li>
+                                            <a href="#" class="facebook">
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="twitter">
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="google">
+                                                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="pinterest">
+                                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="rss">
+                                                <i class="fa fa-rss" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="linkedin">
+                                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="comments-area">
+                                    <h2 class="title-semibold-dark size-xl border-bottom mb-40 pb-20">{{c}} Comments</h2>
+                                    <ul>
+                                        {% for i in coment_id %}
+                                        <li>
+                                            <div class="media media-none-xs">
+                                                <img src="{% static 'img/review-3.png' %}" class="img-fluid rounded-circle" alt="comments">
+                                                <div class="media-body comments-content media-margin30">
+                                                    <h3 class="title-semibold-dark">
+                                                        <a href="#">{{i.name}} ,
+                                                            <span> {{i.date}}</span>
+                                                        </a>
+                                                    </h3>
+                                                    <p>{{i.disc}}.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="leave-comments">
+                                    <h2 class="title-semibold-dark size-xl mb-40">Leave Comments</h2>
+                                    <form method="post" action="{% url 'newscomment' %}">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <input placeholder="Name*" name="name" required class="form-control" type="text">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <input placeholder="Email*" name="email" required class="form-control" type="email">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="form-group">
+                                                    <input class="form-control" name="postid" value="{{aid.id}}" type="hidden">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <textarea placeholder="Message*" name="disc" required class="textarea form-control" id="form-message" rows="8" cols="20"></textarea>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group mb-none">
+                                                    <button type="submit" class="btn-ftg-ptp-56">Post Comment</button>
+                                                </div>
+
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Stay Connected</div>
+                                </div>
+                                <ul class="stay-connected overflow-hidden">
+                                    <li class="facebook">
+                                        <a href="#">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            <div class="connection-quantity">50.2 k</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="#">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            <div class="connection-quantity">10.3 k</div>
+                                            <p>Followers</p>
+                                        </a>
+                                    </li>
+                                    <li class="linkedin">
+                                        <a href="#">
+                                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            <div class="connection-quantity">25.4 k</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li class="rss">
+                                        <a href="#">
+                                            <i class="fa fa-rss" aria-hidden="true"></i>
+                                            <div class="connection-quantity">20.8 k</div>
+                                            <p>Subscriber</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                           
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Newsletter</div>
+                                </div>
+                                <div class="newsletter-area bg-primary">
+                                    <h2 class="title-medium-light size-xl pl-30 pr-30">Subscribe to our mailing list to get the new updates!</h2>
+                                    <img src="{% static 'img/banner/newsletter.png' %}" alt="newsletter" class="img-fluid m-auto mb-15">
+                                    <p>Subscribe our newsletter to stay updated</p>
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" placeholder="Enter your mail" class="form-control">
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- News Details Page Area End Here -->
+{% endblock %}
+            
